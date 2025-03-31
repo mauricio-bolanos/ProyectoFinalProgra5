@@ -67,10 +67,9 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
 
-    // Room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
+    // Real time database
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database)
     implementation(libs.compose.foundation)
     implementation(libs.gson)
     implementation(libs.accompanist.swiperefresh)

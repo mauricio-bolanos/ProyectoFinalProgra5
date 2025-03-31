@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.2"
+firebaseBom = "33.11.0"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -13,7 +14,6 @@ runtimeAndroid = "1.7.8"
 hilt = "2.48.1"
 compose = "1.7.8"
 hilt-navigation-compose = "1.2.0"
-room = "2.6.1"
 runtimeLivedata = "1.7.8"
 gson = "2.10.1"
 accompanist = "0.31.3-beta"
@@ -21,6 +21,8 @@ accompanist = "0.31.3-beta"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -40,10 +42,6 @@ androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
-# Room
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }

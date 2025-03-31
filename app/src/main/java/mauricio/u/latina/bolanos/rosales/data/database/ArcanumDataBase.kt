@@ -3,7 +3,7 @@ package mauricio.u.latina.bolanos.rosales.data.database
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import mauricio.u.latina.bolanos.rosales.model.Users
+
 
 class ArcanumDatabase private constructor() {
     // Referencia a la base de datos de Firebase

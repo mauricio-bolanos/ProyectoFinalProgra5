@@ -1,4 +1,4 @@
-package mauricio.u.latina.bolanos.rosales
+package mauricio.u.latina.bolanos.rosales.userinterfaz
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

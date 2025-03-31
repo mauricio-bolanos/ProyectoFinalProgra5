@@ -17,6 +17,8 @@ hilt-navigation-compose = "1.2.0"
 runtimeLivedata = "1.7.8"
 gson = "2.10.1"
 accompanist = "0.31.3-beta"
+googleGmsGoogleServices = "4.4.2"
+firebaseAuth = "23.2.0"
 
 
 [libraries]
@@ -46,6 +48,7 @@ androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtim
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -53,4 +56,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt  = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

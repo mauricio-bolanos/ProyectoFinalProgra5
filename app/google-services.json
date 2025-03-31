@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327113212337",
+    "project_id": "proyectofinal-240a2",
+    "storage_bucket": "proyectofinal-240a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327113212337:android:d44613e77c3288af747d90",
+        "android_client_info": {
+          "package_name": "mauricio.u.latina.bolanos.rosales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327113212337-8hduk304adki6hu7ijkgmh4t4hi2hp3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHEafWENeeSTZahk4fhHxFZONfUUSMc8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327113212337-8hduk304adki6hu7ijkgmh4t4hi2hp3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

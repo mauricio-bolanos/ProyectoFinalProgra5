@@ -33,15 +33,8 @@ class UserRepository(
     suspend fun addUser(user: Users): String = withContext(ioDispatcher) {
         _operationStatus.value = OperationStatus.Loading
         try {
-            var userId = ""
-            usersDao.addUser(user) { success, id ->
-                if (success) {
-                    userId = id ?: ""
-                    _operationStatus.value = OperationStatus.Success("Usuario añadido correctamente")
-                } else {
-                    _operationStatus.value = OperationStatus.Error(Exception("Error al añadir usuario"))
-                }
-            }
+            val userId = usersDao.addUser(user)
+            _operationStatus.value = OperationStatus.Success("Usuario añadido correctamente")
             userId
         } catch (e: Exception) {
             _operationStatus.value = OperationStatus.Error(e)
@@ -53,14 +46,11 @@ class UserRepository(
     suspend fun getUserById(userId: String): Users? = withContext(ioDispatcher) {
         _operationStatus.value = OperationStatus.Loading
         try {
-            var user: Users? = null
-            usersDao.getUserById(userId) { retrievedUser ->
-                user = retrievedUser
-                _operationStatus.value = if (retrievedUser != null) {
-                    OperationStatus.Success("Usuario obtenido correctamente")
-                } else {
-                    OperationStatus.Error(Exception("Usuario no encontrado"))
-                }
+            val user = usersDao.getUserById(userId)
+            _operationStatus.value = if (user != null) {
+                OperationStatus.Success("Usuario obtenido correctamente")
+            } else {
+                OperationStatus.Error(Exception("Usuario no encontrado"))
             }
             user
         } catch (e: Exception) {
@@ -69,18 +59,14 @@ class UserRepository(
         }
     }
 
-    // Actualizar un usuario
     suspend fun updateUser(user: Users): Boolean = withContext(ioDispatcher) {
         _operationStatus.value = OperationStatus.Loading
         try {
-            var success = false
-            usersDao.updateUser(user) { result ->
-                success = result
-                _operationStatus.value = if (result) {
-                    OperationStatus.Success("Usuario actualizado correctamente")
-                } else {
-                    OperationStatus.Error(Exception("Error al actualizar usuario"))
-                }
+            val success = usersDao.updateUser(user)
+            _operationStatus.value = if (success) {
+                OperationStatus.Success("Usuario actualizado correctamente")
+            } else {
+                OperationStatus.Error(Exception("Error al actualizar usuario"))
             }
             success
         } catch (e: Exception) {
@@ -89,18 +75,14 @@ class UserRepository(
         }
     }
 
-    // Eliminar un usuario
     suspend fun deleteUser(userId: String): Boolean = withContext(ioDispatcher) {
         _operationStatus.value = OperationStatus.Loading
         try {
-            var success = false
-            usersDao.deleteUser(userId) { result ->
-                success = result
-                _operationStatus.value = if (result) {
-                    OperationStatus.Success("Usuario eliminado correctamente")
-                } else {
-                    OperationStatus.Error(Exception("Error al eliminar usuario"))
-                }
+            val success = usersDao.deleteUser(userId)
+            _operationStatus.value = if (success) {
+                OperationStatus.Success("Usuario eliminado correctamente")
+            } else {
+                OperationStatus.Error(Exception("Error al eliminar usuario"))
             }
             success
         } catch (e: Exception) {

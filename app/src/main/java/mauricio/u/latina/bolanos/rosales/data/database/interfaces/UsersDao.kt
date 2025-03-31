@@ -11,6 +11,8 @@ import kotlinx.coroutines.tasks.await
 import mauricio.u.latina.bolanos.rosales.data.database.ArcanumDatabase
 import mauricio.u.latina.bolanos.rosales.model.Users
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class UsersDao @Inject constructor(
     private val arcanumDatabase: ArcanumDatabase
@@ -19,44 +21,46 @@ class UsersDao @Inject constructor(
 
     // Añadir un nuevo usuario (suspend function)
     suspend fun addUser(user: Users): String {
-        return try {
-            val newUserRef = usersReference.push()
-            val userId = newUserRef.key ?: throw Exception("No se pudo generar ID de usuario")
-            val userWithId = user.copy(id = userId)
-            newUserRef.setValue(userWithId).await()
-            userId
-        } catch (e: Exception) {
-            throw Exception("Error al añadir usuario: ${e.message}")
-        }
+        val newRef = usersReference.push()
+        val userId = newRef.key ?: throw Exception("No se pudo generar ID")
+        newRef.setValue(user.copy(id = userId)).await()
+        return userId
     }
 
     // Obtener usuario por ID (suspend function)
     suspend fun getUserById(userId: String): Users? {
-        return try {
-            val snapshot = arcanumDatabase.getUserReferenceById(userId).get().await()
-            snapshot.getValue(Users::class.java)
-        } catch (e: Exception) {
-            throw Exception("Error al obtener usuario: ${e.message}")
+        return suspendCoroutine { continuation ->
+            usersReference.child(userId).get()
+                .addOnSuccessListener { snapshot ->
+                    continuation.resume(snapshot.getValue(Users::class.java))
+                }
+                .addOnFailureListener { e ->
+                    continuation.resume(null)
+                }
         }
     }
 
-    // Actualizar usuario (suspend function)
     suspend fun updateUser(user: Users): Boolean {
-        return try {
-            arcanumDatabase.getUserReferenceById(user.id).setValue(user).await()
-            true
-        } catch (e: Exception) {
-            throw Exception("Error al actualizar usuario: ${e.message}")
+        return suspendCoroutine { continuation ->
+            usersReference.child(user.id).setValue(user)
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
         }
     }
 
-    // Eliminar usuario (suspend function)
     suspend fun deleteUser(userId: String): Boolean {
-        return try {
-            arcanumDatabase.getUserReferenceById(userId).removeValue().await()
-            true
-        } catch (e: Exception) {
-            throw Exception("Error al eliminar usuario: ${e.message}")
+        return suspendCoroutine { continuation ->
+            usersReference.child(userId).removeValue()
+                .addOnSuccessListener {
+                    continuation.resume(true)
+                }
+                .addOnFailureListener {
+                    continuation.resume(false)
+                }
         }
     }
 

@@ -12,6 +12,11 @@ class ArcanumDatabase private constructor() {
     // Referencias a las diferentes tablas/colecciones
     val usersReference = database.getReference("users")
 
+    val canalesReference = database.getReference("canales")
+
+    // Función para obtener referencia específica
+    fun getCanalReferenceById(canalId: String) = canalesReference.child(canalId)
+
     companion object {
         @Volatile private var INSTANCE: ArcanumDatabase? = null
 

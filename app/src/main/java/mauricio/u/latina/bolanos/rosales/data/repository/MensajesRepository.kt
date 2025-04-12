@@ -49,6 +49,4 @@ class MensajesRepository(private val mensajesDao: MensajesDao = MensajesDao()) {
     suspend fun obtenerMensajePorId(id: String): Mensajes? {
         return mensajesDao.obtenerMensajePorId(id)
     }
-
-
 }

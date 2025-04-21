@@ -2,6 +2,8 @@ package mauricio.u.latina.bolanos.rosales.data.database.interfaces
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -12,9 +14,13 @@ import mauricio.u.latina.bolanos.rosales.model.Canales
 import javax.inject.Inject
 
 class CanalesDao @Inject constructor(
-    private val arcanumDatabase: ArcanumDatabase
+    private val database: FirebaseDatabase
 ) {
-    private val canalesReference = arcanumDatabase.canalesReference
+    private val canalesReference: DatabaseReference by lazy {
+        database.getReference("canales").apply {
+            keepSynced(true) // Mantener datos sincronizados offline
+        }
+    }
 
     suspend fun addCanal(canal: Canales): String {
         return try {

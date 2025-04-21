@@ -2,6 +2,7 @@ package mauricio.u.latina.bolanos.rosales.data.database.interfaces
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
@@ -10,10 +11,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import mauricio.u.latina.bolanos.rosales.model.Mensajes
+import javax.inject.Inject
 
-class MensajesDao {
-    private val database = FirebaseDatabase.getInstance()
-    private val mensajesRef = database.getReference("mensajes")
+class MensajesDao @Inject constructor(
+    private val database: FirebaseDatabase
+) {
+    private val mensajesRef: DatabaseReference by lazy {
+        database.getReference("canales").apply {
+            keepSynced(true) // Mantener datos sincronizados offline
+        }
+    }
 
     // Crear un nuevo mensaje
     suspend fun crearMensaje(mensaje: Mensajes): String {

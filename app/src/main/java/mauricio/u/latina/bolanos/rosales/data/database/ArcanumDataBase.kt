@@ -11,11 +11,21 @@ class ArcanumDatabase private constructor() {
 
     // Referencias a las diferentes tablas/colecciones
     val usersReference = database.getReference("users")
-
     val canalesReference = database.getReference("canales")
+    val partidasReference = database.getReference("partidas")
+    val torneosReference = database.getReference("torneos")
+    val listaJugadoresReference = database.getReference("lista_jugadores")
+    val mensajesReference = database.getReference("mensajes")
+    val configUsuarioReference = database.getReference("config_usuario")
 
-    // Función para obtener referencia específica
+    // Funciones para obtener referencias específicas
     fun getCanalReferenceById(canalId: String) = canalesReference.child(canalId)
+    fun getUserReferenceById(userId: String) = usersReference.child(userId)
+    fun getPartidaReferenceById(partidaId: String) = partidasReference.child(partidaId)
+    fun getTorneoReferenceById(torneoId: String) = torneosReference.child(torneoId)
+    fun getListaJugadoresReferenceById(listaId: String) = listaJugadoresReference.child(listaId)
+    fun getMensajeReferenceById(mensajeId: String) = mensajesReference.child(mensajeId)
+    fun getConfigUsuarioReferenceById(configId: String) = configUsuarioReference.child(configId)
 
     companion object {
         @Volatile private var INSTANCE: ArcanumDatabase? = null
@@ -29,8 +39,7 @@ class ArcanumDatabase private constructor() {
         }
     }
 
-    // Métodos específicos para operaciones con Users
-    fun getUserReferenceById(userId: String) = usersReference.child(userId)
+
 
     // Configuración inicial de la base de datos
     fun configureDatabase() {

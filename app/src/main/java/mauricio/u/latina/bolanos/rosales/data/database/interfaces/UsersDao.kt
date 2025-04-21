@@ -3,6 +3,8 @@ package mauricio.u.latina.bolanos.rosales.data.database.interfaces
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -15,9 +17,13 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 class UsersDao @Inject constructor(
-    private val arcanumDatabase: ArcanumDatabase
+    private val database: FirebaseDatabase
 ) {
-    private val usersReference = arcanumDatabase.usersReference
+    private val usersReference: DatabaseReference by lazy {
+        database.getReference("users").apply {
+            keepSynced(true) // Mantener datos sincronizados offline
+        }
+    }
 
     // Añadir un nuevo usuario (suspend function)
     suspend fun addUser(user: Users): String {

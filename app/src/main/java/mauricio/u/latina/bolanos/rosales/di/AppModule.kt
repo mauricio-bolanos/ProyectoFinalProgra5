@@ -81,7 +81,8 @@ object AppModule {
         return UsersDao(database)
     }
 
-    // Repositories (opcional, si los estás usando)
+
+    // Repositories
     @Provides
     @Singleton
     fun provideCanalesRepository(dao: CanalesDao): CanalesRepository {

@@ -2,6 +2,7 @@ package mauricio.u.latina.bolanos.rosales.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import mauricio.u.latina.bolanos.rosales.data.database.interfaces.UsersDao
@@ -9,6 +10,7 @@ import mauricio.u.latina.bolanos.rosales.model.Users
 import mauricio.u.latina.bolanos.rosales.data.repository.UserRepository.OperationStatus
 import javax.inject.Inject
 
+@HiltViewModel
 class UserViewModel @Inject constructor(
     private val usersDao: UsersDao
 ) : ViewModel() {

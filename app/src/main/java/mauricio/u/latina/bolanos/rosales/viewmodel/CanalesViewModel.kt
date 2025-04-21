@@ -2,13 +2,16 @@ package mauricio.u.latina.bolanos.rosales.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import mauricio.u.latina.bolanos.rosales.model.Canales
 import mauricio.u.latina.bolanos.rosales.data.repository.CanalesRepository
 import mauricio.u.latina.bolanos.rosales.data.repository.CanalesRepository.OperationStatus
+import javax.inject.Inject
 
-class CanalesViewModel(
+@HiltViewModel
+class CanalesViewModel @Inject constructor(
     private val canalesRepository: CanalesRepository
 ) : ViewModel() {
 

@@ -2,12 +2,15 @@ package mauricio.u.latina.bolanos.rosales.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import mauricio.u.latina.bolanos.rosales.data.repository.MensajesRepository
 import mauricio.u.latina.bolanos.rosales.model.Mensajes
+import javax.inject.Inject
 
-class MensajesViewModel(
+@HiltViewModel
+class MensajesViewModel @Inject constructor(
     private val repository: MensajesRepository
 ) : ViewModel() {
 

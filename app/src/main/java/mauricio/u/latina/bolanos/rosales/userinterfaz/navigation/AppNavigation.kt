@@ -90,22 +90,21 @@ private fun NavGraphBuilder.mainNavigation(
 
         val authViewModel: AuthViewModel = hiltViewModel(viewModelStoreOwner)
         val partidasViewModel: PartidasViewModel = hiltViewModel()
-        val tconeosViewModel: TorneosViewModel = hiltViewModel()
+        val torneosViewModel: TorneosViewModel = hiltViewModel()
         val listaJugadoresViewModel: ListaJugadoresViewModel = hiltViewModel()
 
 
         HomeScreen(
             navController = navController,
             partidasViewModel = partidasViewModel,
-            torneosViewModel = tconeosViewModel,
+            torneosViewModel = torneosViewModel,
             listaJugadoresViewModel = listaJugadoresViewModel,
-            onLogout = {
+            onlogout = {
                 authViewModel.logout()
                 navController.navigate("auth") {
                     popUpTo("home") { inclusive = true }
                 }
-            },
-            onlogout = TODO()
+            }
         )
     }
 }

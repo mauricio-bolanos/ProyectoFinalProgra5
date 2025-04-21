@@ -24,7 +24,6 @@ fun HomeScreen(
     torneosViewModel: TorneosViewModel = hiltViewModel(),
     listaJugadoresViewModel: ListaJugadoresViewModel = hiltViewModel(),
     onlogout: () -> Unit,
-    onLogout: () -> Unit
 ) {
     val partidasState = partidasViewModel.partidasState.collectAsState()
     val partidas = partidasState.value

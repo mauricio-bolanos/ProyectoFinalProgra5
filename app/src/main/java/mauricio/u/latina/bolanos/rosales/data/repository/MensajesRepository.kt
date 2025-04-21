@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.map
 import mauricio.u.latina.bolanos.rosales.data.database.interfaces.MensajesDao
 import mauricio.u.latina.bolanos.rosales.model.Mensajes
 
-class MensajesRepository(private val mensajesDao: MensajesDao = MensajesDao()) {
+class MensajesRepository(private val mensajesDao: MensajesDao) {
 
     // Obtener todos los mensajes como flujo
     fun obtenerTodosLosMensajes(): Flow<List<Mensajes>> {

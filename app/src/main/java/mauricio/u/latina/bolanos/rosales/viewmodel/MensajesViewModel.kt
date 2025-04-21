@@ -8,7 +8,7 @@ import mauricio.u.latina.bolanos.rosales.data.repository.MensajesRepository
 import mauricio.u.latina.bolanos.rosales.model.Mensajes
 
 class MensajesViewModel(
-    private val repository: MensajesRepository = MensajesRepository()
+    private val repository: MensajesRepository
 ) : ViewModel() {
 
 
